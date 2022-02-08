@@ -1,11 +1,31 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Spring Security Example</title>
+    <meta charset="UTF-8" />
+    <title th:text="'Главная страница'" />
 </head>
 <body>
-<h1>Welcome to Index PAGE!</h1>
+<h1 th:utext="${welcome}" />
 
+</p><a th:href="@{/user-create}"> Войти </a>
+<br/><br/>
+</p><a th:href="@{/user-create}"> Зарегистрироваться </a>
+<br/><br/>
+</p><a th:href="@{/show}"> Посмотреть свой профиль (Только пользователь) </a>
+<br/><br/>
+</p><a th:href="@{/users}"> Посмотреть список всех пользователей (Только администратор) </a>
+<br/><br/>
+<div sec:authorize="hasRole('USER')">Text visible to user.</div>
+<div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>
+<div sec:authorize="isAuthenticated()">
+    Text visible only to authenticated users.
+</div>
+<div sec:authorize="isAuthenticated()">
+    Text visible only to authenticated users.
+</div>
 
+Authenticated username: <div sec:authentication="name"></div>
+<!--Authenticated user roles:
+<div sec:authentication="principal.authorities"></div>-->
 </body>
 </html>
