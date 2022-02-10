@@ -7,7 +7,10 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.UserService;
-import java.util.*;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 
 
 @Component
@@ -23,15 +26,17 @@ public class MyCommandLIneRunner implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) {
-/*        User guest = new User();
-        guest.setUsername("user");
-        guest.setPassword("user");
-        guest.setRoles(new HashSet<>(List.of(new Role(1L, "ROLE_USER"))));
-        userService.save(guest);
+/*        User user = new User();
+        user.setName("user");
+        user.setPassword("user");
+        user.setEmail("user@mail.com");
+        user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+        userService.save(user);
 
         User administrator = new User();
-        administrator.setUsername("admin");
+        administrator.setName("admin");
         administrator.setPassword("admin");
+        administrator.setEmail("admin@mail.com");
         administrator.setRoles(new HashSet<>(Arrays.asList(new Role(1L, "ROLE_USER"), new Role(2L, "ROLE_ADMIN"))));
         userService.save(administrator);*/
     }

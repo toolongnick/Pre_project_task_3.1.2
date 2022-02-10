@@ -4,16 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.thymeleaf.expression.Sets;
 import ru.kata.spring.boot_security.demo.dao.RoleRepository;
 import ru.kata.spring.boot_security.demo.dao.UserRepository;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
-
-import java.sql.Array;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -32,21 +27,17 @@ public class UserService  {
 
     @Transactional(readOnly = true)
     public User findUserByName (String username) {
-        return userRepository.findUsersByName(username);
+        return userRepository.findUserByName(username);
     }
 
     @Transactional
     public void save(User user) {
-/*        User userFromDB = userRepository.findById(user.getId()).orElse(new User());
-        if (userFromDB != null){
-            return false;
-        }
-        User user1 = new User();
-        user1.setUserName("safdsf");
-        user1.setPassword(bCryptPasswordEncoder.encode("asdfasdfasdf"));
-        user1.setActive(true);*/
-//        user1.setRoles(Collections.singleton(new Role(1, "ROLE_USER")));
+        user.setName(user.getName());
+        user.setEmail(user.getEmail());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        if (user.getRoles() == null) {
+            user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+        }
         userRepository.save(user);
     }
 
@@ -57,7 +48,7 @@ public class UserService  {
     public void edit(User user) {
         User storedUser = userRepository.findById(user.getId()).orElseThrow();
         storedUser.setName(user.getName());
-        storedUser.setSurname(user.getSurname());
+        storedUser.setEmail(user.getEmail());
         userRepository.save(storedUser);
     }
 
@@ -68,6 +59,6 @@ public class UserService  {
 
     @Transactional(readOnly = true)
     public List<User> listOfUsers() {
-        return userRepository.findAll() ;
+        return userRepository.findAll();
     }
 }

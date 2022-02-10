@@ -1,31 +1,19 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8" />
     <title th:text="'Главная страница'" />
 </head>
 <body>
-<h1 th:utext="${welcome}" />
+<h1 th:text="${welcome}" />
 
-</p><a th:href="@{/user-create}"> Войти </a>
+</p><a th:href="@{/news}"> Новости (Все, включая незагеристрированных ) </a>
 <br/><br/>
-</p><a th:href="@{/user-create}"> Зарегистрироваться </a>
+</p><a th:href="@{/user/show}"> Посмотреть свой профиль (Зарегистрированные пользователи) </a>
 <br/><br/>
-</p><a th:href="@{/show}"> Посмотреть свой профиль (Только пользователь) </a>
+</p><a th:href="@{/admin/listedUsers}"> Посмотреть список всех пользователей (Только администратор) </a>
 <br/><br/>
-</p><a th:href="@{/users}"> Посмотреть список всех пользователей (Только администратор) </a>
+</p><a th:href="@{/logout}"> Сделать logout </a>
 <br/><br/>
-<div sec:authorize="hasRole('USER')">Text visible to user.</div>
-<div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>
-<div sec:authorize="isAuthenticated()">
-    Text visible only to authenticated users.
-</div>
-<div sec:authorize="isAuthenticated()">
-    Text visible only to authenticated users.
-</div>
-
-Authenticated username: <div sec:authentication="name"></div>
-<!--Authenticated user roles:
-<div sec:authentication="principal.authorities"></div>-->
 </body>
 </html>

@@ -14,13 +14,12 @@ import ru.kata.spring.boot_security.demo.service.UserDetailServiceImpl;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-/*        private final SuccessUserHandler successUserHandler;
+        private final SuccessUserHandler successUserHandler;
 
             @Autowired
             public WebSecurityConfig(SuccessUserHandler successUserHandler) {
                 this.successUserHandler = successUserHandler;
-            }*/
-
+            }
 
     @Bean
     BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -38,28 +37,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-
-                //Доступ только для не зарегистрированных пользователей
-//                .antMatchers("/users").not().fullyAuthenticated()
-
-/*                //Доступ только для пользователей с ролью Администратор
-                .antMatchers("/admin/**", "/user-*").hasRole("ADMIN")
-
-                //Доступ только для пользователей с ролью Пользователь
-                .antMatchers("/users/**").hasRole("USER")*/
-
-                //Доступ разрешен всем пользователям
-                .antMatchers("/").permitAll()
+                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/", "/news").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                //Настройка для входа в систему
-                .formLogin().defaultSuccessUrl("/index", true)
-  //              successHandler(successUserHandler)
+                .formLogin()
+                .successHandler(successUserHandler)
                 .permitAll()
                 .and()
                 .logout()
-                .permitAll()
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/")
+                .permitAll();
+
     }
 
     @Override

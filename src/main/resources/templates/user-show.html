@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>User info</title>
+</head>
+<body>
+<h1 style="color: blue" >User</h1>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
+<table>
+    <thread>
+        <th>UserId</th>
+        <th>Name</th>
+        <th>Email</th>
+    </thread>
+    <tbody>
+        <td th:text="${current_user.id}"/>
+        <td th:text="${current_user.name}"/>
+        <td th:text="${current_user.email}"/>
+    </tbody>
+</table>
+</p><a th:href="@{/}"> Вернуться на первую страницу</a>
+</p><a th:href="@{/logout}"> Сделать logout </a>
+
+</body>
+</html>

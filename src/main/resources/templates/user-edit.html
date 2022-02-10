@@ -5,23 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-<form th:action="@{/user-edit/{id}(id=${user.id})}" th:object="${user}" method="post">
-    <p><label for="firstName">First name</label>
-        <input type="text" th:field="*{getName}" id="firstName">
+<form th:action="@{/admin/user-edit/{id}(id=${user.id})}" th:object="${user}" method="post">
+    <p><label for="username">User name</label>
+        <input type="text" th:field="*{name}" id="username">
     </p>
-    <p><label for="surname">Surname</label>
-        <input type="text" th:field="*{surname}" id="surname">
-    </p>
-    <p><label for="email">Surname</label>
+    <p><label for="email">Email</label>
         <input type="text" th:field="*{email}" id="email">
-<!--    </p>
-    <label for="age">Age</label>
-    <input type="text" th:field="*{age}" id="age">-->
-
     <p>
         <input type="submit" value="Update User"></p>
 </form>
 </body>
 </html>
 
-<!--placeholder="First Name"-->

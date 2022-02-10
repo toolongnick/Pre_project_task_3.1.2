@@ -15,28 +15,30 @@
 </style>
 <table>
     <thread>
-        <th>Id</th>
-        <th>Name</th>
-        <th>MiddleName</th>
-        <th>Surname</th>
-        <th>Age</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Email</th>
+        <th>Role/Roles</th>
         <th>Action</th>
     </thread>
     <tbody>
-    <tr th:each="user :${ListOfUsers}">
-        <td th:text="${user.id}"/>
-        <td th:text="${user.getUserName()}"/>
-        <td th:text="${user.getPassword()}"/>
-        <td th:text="${user.getEmail()}"/>
+    <tr th:each="user :${listOfUsers}">
         <td th:text="${user.name}"/>
-        <td th:text="${user.surname}"/>
+        <td th:text="${user.password}"/>
+        <td th:text="${user.email}"/>
+        <td><a th:each="role:${user.roles}">
+             <a th:text="${role.role}"> A Role</a>
+             <a th:text="';'"></a>
+        </td>
         <td>
-            <a th:href="@{/user-edit/{id}(id=${user.id})}">edit</a>
-            <a th:href="@{/user-delete/{id}(id=${user.id})}">delete</a>
+            <a th:href="@{/admin/user-edit/{id}(id=${user.id})}">edit</a>
+            <a th:href="@{/admin/user-delete/{id}(id=${user.id})}">delete</a>
         </td>
     </tr>
     </tbody>
 </table>
-</p><a th:href="@{/user-create}"> Add user</a>
+</p><a th:href="@{/admin/user-create}"> Add user</a>
+</p><a th:href="@{/logout}"> Сделать logout </a>
+</p><a th:href="@{/}"> Вернуться на главную </a>
 </body>
 </html>
