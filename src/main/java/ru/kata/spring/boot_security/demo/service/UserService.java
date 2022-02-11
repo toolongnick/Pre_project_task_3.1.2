@@ -48,6 +48,7 @@ public class UserService  {
     public void edit(User user) {
         User storedUser = userRepository.findById(user.getId()).orElseThrow();
         storedUser.setName(user.getName());
+        storedUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         storedUser.setEmail(user.getEmail());
         userRepository.save(storedUser);
     }

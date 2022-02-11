@@ -9,11 +9,23 @@
     <p><label for="username">User name</label>
         <input type="text" th:field="*{name}" id="username">
     </p>
+    <p><label for="password">Password</label>
+        <input type="text" th:field="*{password}" id="password">
+    <p>
     <p><label for="email">Email</label>
         <input type="text" th:field="*{email}" id="email">
     <p>
-        <input type="submit" value="Update User"></p>
+    <p><label for="roles">Roles</label>
+            <input type="text" th:field="*{roles}" id="roles">
+    <p>
+    <input type="submit" value="Update User"></p>
 </form>
 </body>
 </html>
 
+
+
+
+<!--    <a th:each="role:${user.roles}">
+        <a th:text="${role.role}"> A Role</a>
+        <a th:text="';'"></a></a>    -->

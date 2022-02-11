@@ -54,7 +54,7 @@ public class MyController {
 
 
     @GetMapping(value = "/admin/user-edit/{id}")
-    public ModelAndView editPage (@PathVariable ("id") Long id, ModelAndView modelAndView) {
+    public ModelAndView editUser (@PathVariable ("id") Long id, ModelAndView modelAndView) {
         User user = userService.getUserById(id);
         modelAndView.setViewName("user-edit");
         modelAndView.addObject("user", user);
@@ -62,7 +62,7 @@ public class MyController {
     }
 
     @PostMapping(value = "/admin/user-edit/{id}")
-    public ModelAndView editFilm(@ModelAttribute User user, @PathVariable("id") Long id, ModelAndView modelAndView) {
+    public ModelAndView editUser (@ModelAttribute User user, @PathVariable("id") Long id, ModelAndView modelAndView) {
         user.setId(id);
         modelAndView.setViewName("redirect:/admin/listedUsers");
         userService.edit(user);
